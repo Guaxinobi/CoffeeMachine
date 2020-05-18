@@ -1,0 +1,120 @@
+money = 550
+water = 400
+milk = 540
+coffee = 120
+cups = 9
+
+def show_coffee_machine_status():
+    global money, water, milk, coffee, cups
+    print("The coffee machine has:")
+    print(str(water) + " of water")
+    print(str(milk) + " of milk")
+    print(str(coffee) + " of coffee beans")
+    print(str(cups) + " of disposable cups")
+    print(str(money) + " of money")
+
+def buy_coffee():
+    global money, water, milk, coffee, cups
+    options = input("What do you want to buy? 1 - espresso, 2 - latte, "
+                    "3 - cappuccino, back - to main menu:\n")
+    if options == "1":
+        while True:
+            if water < 250:
+                print("Sorry, not enough water!\n")
+                break
+            else:
+                water -= 250
+            if coffee < 16:
+                print("Sorry, not enough coffee beans!\n")
+                break
+            else:
+                coffee -= 16
+            if cups < 1:
+                print("Sorry, not enough disposable cups!\n")
+                break
+            else:
+                cups -= 1
+                money += 4
+                print("I have enough resources, making you a coffee!\n")
+                break
+    elif options == "2":
+        while True:
+            if water < 350:
+                print("Sorry, not enough water!\n")
+                break
+            else:
+                water -= 350
+            if milk < 75:
+                print("Sorry, not enough milk!\n")
+                break
+            else:
+                milk -= 75
+            if coffee < 20:
+                print("Sorry, not enough coffee beans!\n")
+                break
+            else:
+                coffee -= 20
+            if cups < 1:
+                print("Sorry, not enough disposable cups!\n")
+                break
+            else:
+                cups -= 1
+                money += 7
+                print("I have enough resources, making you a coffee!\n")
+                break
+    elif options == "3":
+        while True:
+            if water < 200:
+                print("Sorry, not enough water!\n")
+                break
+            else:
+                water -= 200
+            if milk < 100:
+                print("Sorry, not enough milk!\n")
+                break
+            else:
+                milk -= 100
+            if coffee < 12:
+                print("Sorry, not enough coffee beans!\n")
+                break
+            else:
+                coffee -= 12
+            if cups < 1:
+                print("Sorry, not enough disposable cups!\n")
+                break
+            else:
+                cups -= 1
+                money += 6
+                print("I have enough resources, making you a coffee!\n")
+                break
+
+def fill_machine():
+    global water, milk, coffee, cups
+    water += abs(int(input("Write how many ml of water do you want to add:\n")))
+    milk += abs(int(input("Write how many ml of milk do you want to add:\n")))
+    coffee += abs(int(input("Write how many grams of coffee beans do you want to add:\n")))
+    cups += abs(int(input("Write how many disposable cups of coffee do you want to add:\n")))
+
+def take_money():
+    global money
+    print("I gave you $" + str(money))
+    money = 0
+
+def choice_action():
+    action = str(input("Write action (buy, fill, take, remaining, exit): \n"))
+    if action == "buy":
+        buy_coffee()
+        choice_action()
+    elif action == "fill":
+        fill_machine()
+        choice_action()
+    elif action == "take":
+        take_money()
+        choice_action()
+    elif action == "remaining":
+        show_coffee_machine_status()
+        choice_action()
+    elif action == "exit":
+        pass
+
+choice_action()
